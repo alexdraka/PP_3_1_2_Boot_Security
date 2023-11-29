@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show admin page</title>
+</head>
+<style>
+    table {
+        border: 4px solid green;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    td {
+        border: 4px solid green;
+    }
+    th {
+        border: 4px solid green;
+    }
+</style>
+<body>
+<h1>Admin, welcome spring boot security page! Your admin's data below</h1>
+<br/><br/>
+<div>
+    <table>
+        <colgroup>
+
+            <col span="7" style="background:none">
+
+            <col span="1" style="background-color:yellow"><!-- Задаем цвет фона для следующего столбца таблицы-->
+
+            <col span="1" style="background:pink">
+            <tr>
+                <th>id</th>
+                <th>firstName</th>
+                <th>lastName</th>
+                <th>age</th>
+                <th>username</th>
+                <th>password</th>
+                <th>email</th>
+            </tr>
+            <tr>
+                <td th:utext="${user.id}">...</td>
+                <td th:utext="${user.firstName}">...</td>
+                <td th:utext="${user.lastName}">...</td>
+                <td th:utext="${user.age}">...</td>
+                <td th:utext="${user.username}">...</td>
+                <td th:utext="${user.password}">...</td>
+                <td th:utext="${user.email}">...</td>
+
+            </tr>
+        </colgroup>
+    </table>
+</div>
+<body>
+<strong>Your roles:</strong>
+<div>
+    <th:block th:each="ro : ${roles}">
+        <hr th:text="${ro.getName()}">
+    </th:block>
+</div>
+<br/>
+<hr/>
+</body>
+<br />
+<strong> <a href="/">For more information return to main page</a> </strong> <br />
+<em>
+    <a href="https://www.agernic.com/html-tutorial.html">Visit some HTML tutorial</a> </em> <br />
+
+</body>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Ссылки с рамками под курсором мыши</title>
+    <style>
+        body { background: #fff; } /* фон страницы */
+        a {
+            display: inline-block; /* преобразование ссылок во встроенные блоки */
+            color: #333; /* цвет ссылок */
+            font-weight: bold; /* жирность шрифта */
+            text-decoration: none; /* отмена подчеркивания */
+            border: 3px none; /* стили рамки */
+            padding: 5px 10px; /* внутренние отступы */
+        }
+        a:hover {
+            border: 3px #f00 solid; /* стили рамки ссылок под курсором мыши */
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a th:href="@{/logout}">Logout</a>
+</div>
+</body>
+</html>

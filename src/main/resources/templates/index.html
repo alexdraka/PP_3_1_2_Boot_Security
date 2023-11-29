@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>UserList page</title>
+</head>
+<style>
+    table {
+        border: 4px solid green;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    td {
+        border: 4px solid green;
+    }
+    th {
+        border: 4px solid green;
+    }
+</style>
+<body>
+<h1>UserList</h1>
+<br/><br/>
+<div>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>lastName</th>
+        </tr>
+        <tr th:each ="peo : ${people}">
+            <td th:utext="${peo.id}">...</td>
+            <td>
+                <a th:href="@{/admin/show_people(id=${peo.id})}" th:text="${peo.lastName}" target="_blank" />
+            </td>
+        </tr>
+    </table>
+</div>
+<br/>
+<p> * To see user details click on user's lastname</p> <br />
+<strong> <a href="/">For more information return to main pagina</a> </strong> <br />
+<em>
+    <a href="https://www.agernic.com/html-tutorial.html">Visit HTML tutorial</a></em> <br />
+</body>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Ссылки с рамками под курсором мыши</title>
+    <style>
+        body { background: #fff; } /* фон страницы */
+        a {
+            display: inline-block; /* преобразование ссылок во встроенные блоки */
+            color: #333; /* цвет ссылок */
+            font-weight: bold; /* жирность шрифта */
+            text-decoration: none; /* отмена подчеркивания */
+            border: 3px #fff solid; /* стили рамки */
+            padding: 5px 10px; /* внутренние отступы */
+        }
+        a:hover {
+            border: 3px #f00 solid; /* стили рамки ссылок под курсором мыши */
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a th:href="@{/logout}">Logout</a>
+</div>
+</body>
+</html>

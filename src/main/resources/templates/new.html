@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New user form</title>
+</head>
+<body>
+<h1>New user</h1>
+<br/><br/>
+
+<form th:method="POST" th:action="@{/admin/create_people}" th:object="${user}">
+  <label for="firstName">Enter firstname: </label>
+  <input id="firstName" placeholder="Enter First Name" required type="text" th:field="*{firstName}"/>
+  <!--    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{firstName}">Name Error</div>-->
+  <br/>
+  <label for="lastName">Enter lastname: </label>
+  <input id="lastName" placeholder="Enter Last Name" required type="text" th:field="*{lastName}"/>
+  <!--    <div style="color:red" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastName}">Name Error</div>-->
+  <br/>
+  <label for="age">Enter age: </label>
+  <input id="age" placeholder="Enter age" required type="number" min="0" th:field="*{age}"/>
+  <!--    <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>-->
+  <br/>
+  <label for="username">Enter login: </label>
+  <input id="username" placeholder="Enter login" required type="text" th:field="*{username}"/>
+  <!--    <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>-->
+  <br/>
+  <label for="password">Enter password: </label>
+  <input id="password" placeholder="Enter password" required type="password" th:field="*{password}"/>
+  <!--    <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>-->
+  <br/>
+  <label for="email">Enter email: </label>
+  <input id="email" placeholder="Enter email" required type="text" th:field="*{email}"/>
+  <!--    <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>-->
+  <br/>
+  <p>
+    <label>Roles:
+      <input type="checkbox" name="roles"
+             th:each="role : ${allRoles}"
+             th:text="${role.name}"
+             th:value="${role.id}"
+             th:field="*{roles}"
+      />
+    </label>
+  </p>
+  <input type="submit" value="Create!"/>
+</form>
+</body>
+<br/>
+<body>
+<p> ...</p> <br />
+<strong> <a href="/">For more information return to main pagina</a> </strong> <br />
+<em>
+  <a href="https://www.agernic.com/html-tutorial.html">Visit some HTML tutorial</a> </em> <br />
+
+</body>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Ссылки с рамками под курсором мыши</title>
+  <style>
+    body { background: #fff; } /* фон страницы */
+    a {
+      display: inline-block; /* преобразование ссылок во встроенные блоки */
+      color: #333; /* цвет ссылок */
+      font-weight: bold; /* жирность шрифта */
+      text-decoration: none; /* отмена подчеркивания */
+      border: 3px #fff solid; /* стили рамки */
+      padding: 5px 10px; /* внутренние отступы */
+    }
+    a:hover {
+      border: 3px #f00 solid; /* стили рамки ссылок под курсором мыши */
+    }
+  </style>
+</head>
+<body>
+<div>
+  <a th:href="@{/logout}">Logout</a>
+</div>
+</body>
+</html>

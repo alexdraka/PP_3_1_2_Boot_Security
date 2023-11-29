@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+<div>
+    <th:block th:each="msg : ${messages}">
+        <h1 th:text="${msg}"></h1>
+    </th:block>
+</div>
+<br/>
+<hr/>
+
+<a href="/admin/people">-->> See all people</a>
+<br/>
+<a href="/admin/new_user">-->> Add new user</a>
+</body>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Ссылки с рамками под курсором мыши</title>
+    <style>
+        body { background: #fff; } /* фон страницы */
+        a {
+            display: inline-block; /* преобразование ссылок во встроенные блоки */
+            color: #333; /* цвет ссылок */
+            font-weight: bold; /* жирность шрифта */
+            text-decoration: none; /* отмена подчеркивания */
+            border: 3px #fff solid; /* стили рамки */
+            padding: 5px 10px; /* внутренние отступы */
+        }
+        a:hover {
+            border: 3px #f00 solid; /* стили рамки ссылок под курсором мыши */
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a th:href="@{/logout}">Logout</a>
+</div>
+</body>
+</html>
