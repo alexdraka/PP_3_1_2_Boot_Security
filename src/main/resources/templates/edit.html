@@ -11,7 +11,7 @@
 <form th:method="POST" th:action="@{/admin/edit_people}" th:object="${user}">
   <label for="id">Enter id (required): </label>
   <input readonly id="id" placeholder="Enter id" required type="number" min="1" th:field="*{id}"/>
-<!--  <input type="text" th:field="*{id}" id="id"/>-->
+  <!--  <input type="text" th:field="*{id}" id="id"/>-->
   <!--    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{firstName}">Name Error</div>-->
   <br/>
   <label for="firstName">Enter firstname: </label>
@@ -31,7 +31,7 @@
   <!--    <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>-->
   <br/>
   <label for="password">Enter password: </label>
-  <input id="password" placeholder="Enter password" required type="password" th:field="*{password}"/>
+  <input autocomplete="on" id="password" placeholder="Enter password" required type="password" th:field="*{password}"/>
   <!--    <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>-->
   <br/>
   <label for="email">Enter email: </label>

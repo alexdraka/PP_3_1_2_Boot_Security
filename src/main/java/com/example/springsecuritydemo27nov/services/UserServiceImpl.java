@@ -27,16 +27,19 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
         this.customPasswordEncoder = customPasswordEncoder;
     }
+    @Transactional
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
-
+    @Transactional
     public List<User> index() {
         return userRepository.findAll();
     }
+    @Transactional
     public User show(Long id) {
         return userRepository.findById(id).orElse(null);
     }
+    @Transactional
     public void save(User user) {
 
         User userToBeSaved = new User();
@@ -52,9 +55,11 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(userToBeSaved);
     }
+    @Transactional
     public void update(Long id, User user) {
         save(user);
     }
+    @Transactional
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
@@ -71,6 +76,7 @@ public class UserServiceImpl implements UserService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 mapRolesToAuthorities(user.getRoles()));
     }
+
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream().map(r -> new SimpleGrantedAuthority(r.getName())).collect(Collectors.toList());
     }

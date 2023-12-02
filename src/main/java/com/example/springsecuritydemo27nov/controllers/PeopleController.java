@@ -8,12 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import java.security.Principal;
 import java.util.Collection;
+import java.util.List;
 
 @Controller
 public class PeopleController {
@@ -81,13 +80,27 @@ public class PeopleController {
         return "redirect:/admin/people";
     }
 
+    //    @GetMapping("/admin/new_update")
+//    public String editUser(@RequestParam("id") Long id, @ModelAttribute("user") User user, Model model) {
+//        Collection<Role> roles = roleRepository.findAll();
+//
+//        model.addAttribute("allRoles", roles);
+//
+//        return "edit";
+//    }
     @GetMapping("/admin/new_update")
-    public String editUser(@RequestParam("id") Long id, @ModelAttribute("user") User user, Model model) {
-        Collection<Role> roles = roleRepository.findAll();
+    public ModelAndView editUser(@RequestParam("id") Long id, @ModelAttribute("user") User user, Model model) {
+        user = userService.show(id);
 
-        model.addAttribute("allRoles", roles);
+        ModelAndView mav = new ModelAndView("edit");
 
-        return "edit";
+        mav.addObject("user", user);
+
+        List<Role> roles = roleRepository.findAll();
+
+        mav.addObject("allRoles", roles);
+
+        return mav;
     }
     //
     @PostMapping("/admin/edit_people")
