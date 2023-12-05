@@ -1,6 +1,6 @@
 package com.example.springsecuritydemo27nov.configs;
 
-import com.example.springsecuritydemo27nov.services.UserServiceImpl;
+import com.example.springsecuritydemo27nov.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,12 +14,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-    private UserServiceImpl userServiceImpl;
+    private UserService userService;
     private final SuccessUserHandler successUserHandler;
 
     @Autowired
-    public void setUserServiceImpl(UserServiceImpl userServiceImpl) {
-        this.userServiceImpl = userServiceImpl;
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     public WebSecurityConfig(SuccessUserHandler successUserHandler) {
@@ -44,7 +44,7 @@ public class WebSecurityConfig {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
 
         authenticationProvider.setPasswordEncoder(customPasswordEncoder());
-        authenticationProvider.setUserDetailsService(userServiceImpl);
+        authenticationProvider.setUserDetailsService(userService);
 
         return authenticationProvider;
     }

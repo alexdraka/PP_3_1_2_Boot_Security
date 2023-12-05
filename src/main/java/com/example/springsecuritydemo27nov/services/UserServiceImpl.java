@@ -27,38 +27,36 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
         this.customPasswordEncoder = customPasswordEncoder;
     }
-    @Transactional
+    @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
-    @Transactional
-    public List<User> index() {
+
+    @Override
+    public List<User> mapAll() {
         return userRepository.findAll();
     }
-    @Transactional
+
+    @Override
     public User show(Long id) {
         return userRepository.findById(id).orElse(null);
     }
+
+    @Override
     @Transactional
     public void save(User user) {
+        user.setPassword(customPasswordEncoder.encode(user.getPassword()));
 
-        User userToBeSaved = new User();
-
-        userToBeSaved.setId(user.getId());
-        userToBeSaved.setFirstName(user.getFirstName());
-        userToBeSaved.setLastName(user.getLastName());
-        userToBeSaved.setAge(user.getAge());
-        userToBeSaved.setEmail(user.getEmail());
-        userToBeSaved.setUsername(user.getUsername());
-        userToBeSaved.setPassword(customPasswordEncoder.encode(user.getPassword()));
-        userToBeSaved.setRoles(user.getRoles());
-
-        userRepository.save(userToBeSaved);
+        userRepository.save(user);
     }
+
+    @Override
     @Transactional
-    public void update(Long id, User user) {
+    public void update(User user) {
         save(user);
     }
+
+    @Override
     @Transactional
     public void delete(Long id) {
         userRepository.deleteById(id);
@@ -71,8 +69,8 @@ public class UserServiceImpl implements UserService {
 
         if(user == null) {
             throw new UsernameNotFoundException(String.format("User '%s' not found", username));
-
         }
+
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 mapRolesToAuthorities(user.getRoles()));
     }

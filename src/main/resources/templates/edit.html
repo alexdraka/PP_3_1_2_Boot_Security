@@ -8,35 +8,27 @@
 <h1>Edit user</h1>
 <br/><br/>
 
-<form th:method="POST" th:action="@{/admin/edit_people}" th:object="${user}">
+<form th:method="PATCH" th:action="@{/admin/edit_people}" th:object="${user}">
   <label for="id">Enter id (required): </label>
   <input readonly id="id" placeholder="Enter id" required type="number" min="1" th:field="*{id}"/>
-  <!--  <input type="text" th:field="*{id}" id="id"/>-->
-  <!--    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{firstName}">Name Error</div>-->
   <br/>
   <label for="firstName">Enter firstname: </label>
   <input id="firstName" placeholder="Enter First Name" required type="text" th:field="*{firstName}"/>
-  <!--    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{firstName}">Name Error</div>-->
   <br/>
   <label for="lastName">Enter lastname: </label>
   <input id="lastName" placeholder="Enter Last Name" required type="text" th:field="*{lastName}"/>
-  <!--    <div style="color:red" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastName}">Name Error</div>-->
   <br/>
   <label for="age">Enter age: </label>
   <input id="age" placeholder="Enter age" required type="number" min="0" th:field="*{age}"/>
-  <!--    <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>-->
   <br/>
   <label for="username">Enter login: </label>
   <input readonly id="username" placeholder="Enter username" required type="text" th:field="*{username}"/>
-  <!--    <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>-->
   <br/>
   <label for="password">Enter password: </label>
   <input autocomplete="on" id="password" placeholder="Enter password" required type="password" th:field="*{password}"/>
-  <!--    <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>-->
   <br/>
   <label for="email">Enter email: </label>
   <input id="email" placeholder="Enter email" required type="text" th:field="*{email}"/>
-  <!--    <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>-->
   <br/>
   <p>
     <label>Roles:
@@ -50,16 +42,8 @@
   </p>
   <input type="submit" value="Update!"/>
 </form>
-
 </body>
 <br/>
-<body>
-<p> ...</p> <br />
-<strong> <a href="/">For more information return to main pagina</a> </strong> <br />
-<em>
-  <a href="https://www.agernic.com/html-tutorial.html">Visit some HTML tutorial</a> </em> <br />
-
-</body>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Ссылки с рамками под курсором мыши</title>
@@ -80,6 +64,8 @@
 </head>
 <body>
 <div>
+  <a href="/admin/people">See all people</a>
+  <a href="/admin/new_user">Add new user</a>
   <a th:href="@{/logout}">Logout</a>
 </div>
 </body>

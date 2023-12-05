@@ -12,9 +12,9 @@ public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id = 2l;
-    @Column(name = "name")
-    private String name = "USER";
+    private Long id;
+    @Column(name = "name", unique = true)
+    private String name;
 
     public Role(Long id, String name) {
         this.id = id;

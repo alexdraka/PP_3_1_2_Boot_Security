@@ -34,6 +34,10 @@ spring:
   sql:
     init:
       mode: never
+  mvc:
+    hidden-method:
+      filter:
+        enabled: true
 #logging:
 #  threshold:
 #    console: TRACE

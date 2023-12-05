@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface UserService extends UserDetailsService {
     User findByUsername(String username);
-    List<User> index();
+    List<User> mapAll();
     User show(Long id);
     void save(User user);
-    void update(Long id, User user);
+    void update(User user);
     void delete(Long id);
 }
 
